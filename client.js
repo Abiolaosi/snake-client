@@ -1,29 +1,23 @@
-// const connect = function() {
-//   const conn = net.createConnection({
-//     host: '10.0.2.15',
-//     port: 50541
-//   });
-
-//   // interpret incoming data as text
-//   conn.setEncoding('utf8');
-
-//   conn.on('connect', () => {
-//     console.log('Successfully connected to game server');
-//   });
-  
-//   conn.on('connect', () => {
-//     conn.write('Name: MHR');
-
-//   });
-
-//   conn.on('data', (data) => {
-//     console.log(`Data received from the server:  ${data}`);
-//   });
-
-//   return conn;
-// };
-// ---------------------------
-
+/*
+const connect = function() {
+  const conn = net.createConnection({
+  host: '10.0.2.15',
+  port: 50541
+  });
+  //interpret incoming data as text 
+  conn.setEncoding('UTF8');
+  // client request once connected.
+  conn.on('connect', () => {
+  console.log(`Successfully connected to game server!`);
+  conn.write(`Name: SNK`);
+  });
+  // http response print data server
+  conn.on('data', (data) => {
+  console.log('Data recieved from the server: ${data}');
+  //end of connection
+  conn.end();
+  });
+*/  
 const Net = require('net');
 // The port number and hostname of the server.
 const port = 50541;
@@ -35,10 +29,10 @@ const client = new Net.Socket();
 client.connect({ port: port, host: host }), function() {
   // If there is no error, the server has accepted the request and created a new
   // socket dedicated to us.
-  console.log('TCP connection established with the server.');
+  console.log('Successfully connected to game server.');
 
   // The client can now send data to the server by writing to its socket.
-  client.write('Hello, server.');
+  client.write('Name: SNK');
 };
 
 // The client can also receive data from the server by reading from its socket.
@@ -52,4 +46,3 @@ client.on('data', function(chunk) {
 client.on('end', function() {
   console.log('Requested an end to the TCP connection');
 });
-
